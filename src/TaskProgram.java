@@ -26,21 +26,191 @@ public class TaskProgram extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        txtname = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtdesc = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        lblctask = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblttask = new javax.swing.JLabel();
+        btnstart = new javax.swing.JButton();
+        bntback = new javax.swing.JButton();
+        btnnext = new javax.swing.JButton();
+        btnend = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnushowall = new javax.swing.JMenuItem();
+        mnuexit = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        mnureplace = new javax.swing.JMenuItem();
+        mnuremove = new javax.swing.JMenuItem();
+        mnurestore = new javax.swing.JMenuItem();
+        mnuclear = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mnubefore = new javax.swing.JMenuItem();
+        mnuafter = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Name: ");
+
+        jLabel2.setText("Description: ");
+
+        txtdesc.setColumns(20);
+        txtdesc.setRows(5);
+        jScrollPane1.setViewportView(txtdesc);
+
+        jLabel3.setText("Current Task");
+
+        lblctask.setText("N/A");
+        lblctask.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel5.setText("Total Tasks: ");
+
+        lblttask.setText("   0");
+        lblttask.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnstart.setText("|<");
+
+        bntback.setText("<");
+
+        btnnext.setText(">");
+
+        btnend.setText(">|");
+
+        jMenu1.setText("File");
+
+        mnushowall.setText("Show All Tasks");
+        jMenu1.add(mnushowall);
+
+        mnuexit.setText("Exit");
+        jMenu1.add(mnuexit);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+
+        mnureplace.setText("Replace Current Task");
+        mnureplace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnureplaceActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnureplace);
+
+        mnuremove.setText("Remove Current Task");
+        mnuremove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuremoveActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuremove);
+
+        mnurestore.setText("Restore Current Task To Screen");
+        jMenu2.add(mnurestore);
+
+        mnuclear.setText("Clear Screen");
+        mnuclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuclearActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnuclear);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Insert");
+
+        mnubefore.setText("Before Current Task");
+        jMenu3.add(mnubefore);
+
+        mnuafter.setText("After Current Task");
+        jMenu3.add(mnuafter);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(27, 27, 27)
+                        .addComponent(lblctask, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblttask, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(15, 15, 15)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(txtname))))
+                .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnstart)
+                .addGap(18, 18, 18)
+                .addComponent(bntback)
+                .addGap(18, 18, 18)
+                .addComponent(btnnext)
+                .addGap(18, 18, 18)
+                .addComponent(btnend)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblctask, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblttask, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnstart)
+                    .addComponent(bntback)
+                    .addComponent(btnnext)
+                    .addComponent(btnend))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnureplaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnureplaceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnureplaceActionPerformed
+
+    private void mnuremoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuremoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuremoveActionPerformed
+
+    private void mnuclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuclearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuclearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +248,30 @@ public class TaskProgram extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntback;
+    private javax.swing.JButton btnend;
+    private javax.swing.JButton btnnext;
+    private javax.swing.JButton btnstart;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblctask;
+    private javax.swing.JLabel lblttask;
+    private javax.swing.JMenuItem mnuafter;
+    private javax.swing.JMenuItem mnubefore;
+    private javax.swing.JMenuItem mnuclear;
+    private javax.swing.JMenuItem mnuexit;
+    private javax.swing.JMenuItem mnuremove;
+    private javax.swing.JMenuItem mnureplace;
+    private javax.swing.JMenuItem mnurestore;
+    private javax.swing.JMenuItem mnushowall;
+    private javax.swing.JTextArea txtdesc;
+    private javax.swing.JTextField txtname;
     // End of variables declaration//GEN-END:variables
 }

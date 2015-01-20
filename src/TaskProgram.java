@@ -1,3 +1,8 @@
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +14,19 @@
  * @author conn6070
  */
 public class TaskProgram extends javax.swing.JFrame {
-
+    ArrayList list;
+    ListIterator li;
+    int curtask,tottask;
+    Task t;
     /**
      * Creates new form TaskProgram
      */
     public TaskProgram() {
         initComponents();
+        list=new ArrayList();
+        li=list.listIterator();
+        curtask=0;
+        tottask=0;
     }
 
     /**
@@ -73,12 +85,27 @@ public class TaskProgram extends javax.swing.JFrame {
         lblttask.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnstart.setText("|<");
+        btnstart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnstartActionPerformed(evt);
+            }
+        });
 
         bntback.setText("<");
 
         btnnext.setText(">");
+        btnnext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnextActionPerformed(evt);
+            }
+        });
 
         btnend.setText(">|");
+        btnend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnendActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -127,6 +154,11 @@ public class TaskProgram extends javax.swing.JFrame {
         jMenu3.add(mnubefore);
 
         mnuafter.setText("After Current Task");
+        mnuafter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuafterActionPerformed(evt);
+            }
+        });
         jMenu3.add(mnuafter);
 
         jMenuBar1.add(jMenu3);
@@ -211,6 +243,55 @@ public class TaskProgram extends javax.swing.JFrame {
     private void mnuclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuclearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuclearActionPerformed
+
+    private void mnuafterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuafterActionPerformed
+        // TODO add your handling code here:
+        String nm=txtname.getText();//read info from screen
+        String d=txtdesc.getText();
+         t = new Task (nm,d);
+        if(t.validate()==false){//make sure data is ok
+            JOptionPane.showMessageDialog(this,"Error- Must enter all information");
+            return;
+        }
+        if(tottask>0)li.next();//go past current task if you have at least 1
+        li.add(t);
+        li.previous();
+        curtask++;
+        tottask++;
+        lblttask.setText(""+tottask);//update counter displays
+        lblctask.setText(""+curtask);
+        JOptionPane.showMessageDialog(this,"Task Added");
+    }//GEN-LAST:event_mnuafterActionPerformed
+
+    private void btnstartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnstartActionPerformed
+
+    private void btnendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnendActionPerformed
+        // TODO add your handling code here:
+        if(curtask==tottask)return;//we are already at the end
+       while(li.hasNext())//go to end
+           li.next();
+       t=(Task)li.previous();
+       curtask=tottask;
+       //update display
+       lblctask.setText(""+curtask);
+       txtname.setText(t.getName());
+       txtdesc.setText(t.getDescription());
+        
+    }//GEN-LAST:event_btnendActionPerformed
+
+    private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
+        // TODO add your handling code here:
+          if(curtask==tottask)return;
+       curtask++;
+       lblctask.setText(""+curtask);
+       li.next();//passes over current task
+       li.next();//passes over next task
+       t=(Task)li.previous();//get infront of task
+       txtname.setText(t.getName());
+       txtdesc.setText(t.getDescription());
+    }//GEN-LAST:event_btnnextActionPerformed
 
     /**
      * @param args the command line arguments

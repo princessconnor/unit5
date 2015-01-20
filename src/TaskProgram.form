@@ -71,6 +71,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="After Current Task"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuafterActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -238,6 +241,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="|&lt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnstartActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bntback">
       <Properties>
@@ -248,11 +254,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnnextActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnend">
       <Properties>
         <Property name="text" type="java.lang.String" value="&gt;|"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnendActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

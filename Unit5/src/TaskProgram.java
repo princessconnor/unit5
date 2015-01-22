@@ -184,7 +184,7 @@ public class TaskProgram extends javax.swing.JFrame {
        //update display
        lblctask.setText(""+curtask);
        txtname.setText(t.getName());
-       txtdesc.setText(t.getDescription());
+        txtdesc.setText(t.getDescription());
         
     }//GEN-LAST:event_btnendActionPerformed
 

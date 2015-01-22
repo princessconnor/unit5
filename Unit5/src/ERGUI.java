@@ -174,6 +174,7 @@ public class ERGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error name is blank - please input a name");
             return;
         }
+        //place patients in que
         if(cond == "critical")
         {
             linkq.enQue(P, 0);
@@ -193,6 +194,7 @@ public class ERGUI extends javax.swing.JFrame {
 
     private void btntreatnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntreatnextActionPerformed
         // TODO add your handling code here:
+        //treat next patient
          if(linkq.peekFRONT()==""){
             JOptionPane.showMessageDialog(this, "No patients in queue.");
             return;

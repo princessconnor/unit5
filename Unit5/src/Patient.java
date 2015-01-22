@@ -12,9 +12,9 @@ public class Patient
      private String name;
     private String condition;
     
-    public Patient(String nm, String c)
+    public Patient(String name1, String c)
     {
-        name = nm;
+        name = name1;
         condition = c;
     }
     

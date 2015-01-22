@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,16 +32,18 @@ public class ERGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         txtname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         rbfair = new javax.swing.JRadioButton();
         rbserious = new javax.swing.JRadioButton();
         rbcritical = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        btnsched = new javax.swing.JButton();
         btntreatnext = new javax.swing.JButton();
         btntreatall = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtroom = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,15 +55,28 @@ public class ERGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Patient Name:");
 
+        buttonGroup1.add(rbfair);
         rbfair.setText("Fair Condition");
 
+        buttonGroup1.add(rbserious);
         rbserious.setText("Serious Condition");
 
+        buttonGroup1.add(rbcritical);
         rbcritical.setText("Critical Condition");
 
-        jButton1.setText("btnschedule");
+        btnsched.setText("btnschedule");
+        btnsched.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnschedActionPerformed(evt);
+            }
+        });
 
         btntreatnext.setText("Treat next");
+        btntreatnext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntreatnextActionPerformed(evt);
+            }
+        });
 
         btntreatall.setText("Treat All");
         btntreatall.addActionListener(new java.awt.event.ActionListener() {
@@ -67,9 +85,9 @@ public class ERGUI extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtroom.setColumns(20);
+        txtroom.setRows(5);
+        jScrollPane1.setViewportView(txtroom);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +114,7 @@ public class ERGUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btntreatnext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btntreatall, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnsched, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(82, 82, 82))))))
         );
         layout.setVerticalGroup(
@@ -109,7 +127,7 @@ public class ERGUI extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbfair)
-                    .addComponent(jButton1))
+                    .addComponent(btnsched))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbserious)
@@ -135,7 +153,52 @@ public class ERGUI extends javax.swing.JFrame {
 
     private void btntreatallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntreatallActionPerformed
         // TODO add your handling code here:
+           if(linkq.peekFRONT()==""){
+            JOptionPane.showMessageDialog(this, "No patients in queue.");
+            return;
+        }
+        while(linkq.peekFRONT()!= ""){
+            txtname.setText(linkq.deQue() + "has been treated.\n");
+        }
     }//GEN-LAST:event_btntreatallActionPerformed
+
+    private void btnschedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnschedActionPerformed
+        // TODO add your handling code here:
+        String name, cond="";
+        
+        name = txtname.getText();
+        cond = buttonGroup1.getSelection().getActionCommand();
+        P = new Patient(name, cond);
+  //makes sure name isn;t blank
+        if(P.setName(name)==false){
+            JOptionPane.showMessageDialog(this, "Error name is blank - please input a name");
+            return;
+        }
+        if(cond == "critical")
+        {
+            linkq.enQue(P, 0);
+        }
+            else if(cond == "serious")
+            {
+                linkq.enQue(P, 1);
+            }
+                else if(cond == "fair")
+                {
+                    linkq.enQue(P, 2);
+                }
+        txtroom.append(P.getName() + "--------------------" + P.checkCond() + "---->Waiting...<----\n" );
+        txtname.setText("");
+        
+    }//GEN-LAST:event_btnschedActionPerformed
+
+    private void btntreatnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntreatnextActionPerformed
+        // TODO add your handling code here:
+         if(linkq.peekFRONT()==""){
+            JOptionPane.showMessageDialog(this, "No patients in queue.");
+            return;
+        }        
+        txtroom.append(linkq.deQue() + "has been treated.\n");
+    }//GEN-LAST:event_btntreatnextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,16 +236,18 @@ public class ERGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnsched;
     private javax.swing.JButton btntreatall;
     private javax.swing.JButton btntreatnext;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JRadioButton rbcritical;
     private javax.swing.JRadioButton rbfair;
     private javax.swing.JRadioButton rbserious;
     private javax.swing.JTextField txtname;
+    private javax.swing.JTextArea txtroom;
     // End of variables declaration//GEN-END:variables
 }

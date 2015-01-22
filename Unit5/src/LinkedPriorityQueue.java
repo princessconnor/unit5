@@ -22,17 +22,17 @@ public class LinkedPriorityQueue implements Priorityqueue{
         }
     }
     
-    public void enqueue(Object obj)
+    public void enQue(Object obj)
     {
         throw new IllegalStateException("Must give a priority");
     }
     
-    public void enqueue(Object obj, int i) 
+    public void enQue(Object obj, int i) 
     {
         list[i].add(obj);
     }
 
-    public Object dequeue() 
+    public Object deQue() 
     {
         if(list[0].isEmpty())
         {
@@ -54,18 +54,46 @@ public class LinkedPriorityQueue implements Priorityqueue{
         return list.length;
     }
     
-    public int queueSize(int i)
+    public int queueSIZE(int i)
     {
         return list[i].size();
     }
-    
-    public boolean hasData()
+     public Object peekFRONT() 
+     {
+     if(list[0].isEmpty())
+     {
+     if(list[1].isEmpty())
+    {
+     if(list[2].isEmpty())
+     {
+      return "  ";
+     }
+      else return list[2].get(0);
+     }
+      else return list[1].get(0);
+     }
+      else return list[0].get(0);
+    }
+    public boolean hasDATA()
     {
         for(int i = 0;i < size;i++)
         {
-            if(queueSize(i) > 0)
+            if(queueSIZE(i) > 0)
+            {
                 return true;
+            }
+                
         }
         return false;
     }
+
+  
+
+    
+
+   
+
+  
+
+    
 }

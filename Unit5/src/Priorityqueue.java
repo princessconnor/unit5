@@ -7,6 +7,6 @@
  *
  * @author conn6070
  */
-public interface Priorityqueue extends Queue{
-    public void enqueue(Object obj, int priority);
+public interface Priorityqueue extends que{
+    public void enQue(Object obj, int priority);
 }
